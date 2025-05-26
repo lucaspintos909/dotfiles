@@ -104,6 +104,8 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  # Enable dconf
+  programs.dconf.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -120,6 +122,7 @@
     btop
     tmux
     dconf
+    dconf2nix
     openssl
   ];
 
@@ -133,6 +136,19 @@
       "Port" = 22;
       "PasswordAuthentication" = false;
     };
+  };
+
+  # Disable auto-suspend
+  services.xserver.displayManager.gdm.autoSuspend = false;
+
+  # Systemd sleep settings
+  systemd.sleep = {
+    extraConfig = ''
+      AllowSuspend=no
+      AllowHibernation=no
+      AllowHybridSleep=no
+      AllowSuspendThenHibernate=no
+    '';
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
