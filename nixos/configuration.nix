@@ -83,7 +83,7 @@
     enable = true;
     rootless = {
       enable = true;
-      setSocketVariable = true;
+      setSocketVariable = false;
     };
   };
   
@@ -94,6 +94,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILvThDJivh/pDPptZccxjEoTO5/t9vr/um8KBP+S7ly4 lucaspintos909@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINeVXxY9qLZO2kkY0XP3mh3ntT71xgYihwpb0jNVIpwL root@coolify"
     ];
   };
 
@@ -119,6 +120,7 @@
     btop
     tmux
     dconf
+    openssl
   ];
 
   # Enable the Tailscale daemon.
@@ -133,5 +135,5 @@
     };
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "25.05"; # Did you read the comment?
 }
