@@ -129,8 +129,10 @@
 
     # Configuración de GNOME Shell
     "org/gnome/shell" = {
+      disable-user-extensions = false;
       enabled-extensions = [
         "system-monitor-indicator@mknap.com"
+        "clipboard-indicator@tudmotu.com"
       ];
       favorite-apps = [
         "org.gnome.Console.desktop"
@@ -168,6 +170,7 @@
   # Paquetes necesarios para las extensiones
   home.packages = with pkgs; [
     gnomeExtensions.system-monitor
+    gnomeExtensions.clipboard-indicator
   ];
 
   # Habilitar extensiones de GNOME
