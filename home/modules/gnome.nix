@@ -4,7 +4,7 @@
   dconf.settings = {
     # Configuración de carpetas de aplicaciones
     "org/gnome/desktop/app-folders" = {
-      folder-children = ["Utilities", "YaST", "Pardus"];
+      folder-children = ["Utilities" "YaST" "Pardus"];
     };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
@@ -57,7 +57,7 @@
 
     # Configuración de entrada
     "org/gnome/desktop/input-sources" = {
-      sources = [("xkb", "latam")];
+      sources = [ [ "xkb" "latam" ] ];
       xkb-options = ["terminate:ctrl_alt_bksp"];
     };
 
@@ -121,11 +121,6 @@
       secondary-color = "#000000";
     };
 
-    # Configuración de sesión
-    "org/gnome/desktop/session" = {
-      idle-delay = lib.hm.gvariant.mkUint32 0;
-    };
-
     # Configuración de energía
     "org/gnome/settings-daemon/plugins/power" = {
       power-button-action = "nothing";
@@ -134,37 +129,6 @@
 
     # Configuración de GNOME Shell
     "org/gnome/shell" = {
-      app-picker-layout = [
-        {
-          "org.gnome.Contacts.desktop" = { position = 0; };
-          "org.gnome.Weather.desktop" = { position = 1; };
-          "org.gnome.clocks.desktop" = { position = 2; };
-          "org.gnome.Maps.desktop" = { position = 3; };
-          "org.gnome.Totem.desktop" = { position = 4; };
-          "org.gnome.Calculator.desktop" = { position = 5; };
-          "simple-scan.desktop" = { position = 6; };
-          "org.gnome.Settings.desktop" = { position = 7; };
-          "org.gnome.SystemMonitor.desktop" = { position = 8; };
-          "Utilities" = { position = 9; };
-          "yelp.desktop" = { position = 10; };
-          "cups.desktop" = { position = 11; };
-          "brave-browser.desktop" = { position = 12; };
-          "btop.desktop" = { position = 13; };
-          "org.gnome.Snapshot.desktop" = { position = 14; };
-          "cursor.desktop" = { position = 15; };
-          "datagrip.desktop" = { position = 16; };
-          "org.gnome.TextEditor.desktop" = { position = 17; };
-          "org.gnome.Extensions.desktop" = { position = 18; };
-          "firefox.desktop" = { position = 19; };
-          "nvim.desktop" = { position = 20; };
-          "nixos-manual.desktop" = { position = 21; };
-          "termius-app.desktop" = { position = 22; };
-          "org.gnome.Tour.desktop" = { position = 23; };
-        }
-        {
-          "xterm.desktop" = { position = 0; };
-        }
-      ];
       enabled-extensions = [
         "System_Monitor@bghome.gmail.com"
         "system-monitor-indicator@mknap.com"
@@ -197,8 +161,8 @@
     };
 
     "org/gnome/nautilus/window-state" = {
-      initial-size = (890, 550);
-      initial-size-file-chooser = (890, 550);
+      initial-size = [ 890 550 ];
+      initial-size-file-chooser = [ 890 550 ];
     };
   };
 
@@ -208,5 +172,7 @@
   ];
 
   # Habilitar extensiones de GNOME
-  services.gnome.core-utilities.enable = true;
+  gtk = {
+    enable = true;
+  };
 }
