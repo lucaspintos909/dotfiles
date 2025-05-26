@@ -130,7 +130,6 @@
     # Configuración de GNOME Shell
     "org/gnome/shell" = {
       enabled-extensions = [
-        "System_Monitor@bghome.gmail.com"
         "system-monitor-indicator@mknap.com"
       ];
       favorite-apps = [
