@@ -49,17 +49,26 @@
     LC_TIME = "es_UY.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "latam";
     variant = "";
+  };
+
+  services.xserver = {
+    enable = true;
+    layout = "latam";
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
+    };
+    desktopManager = {
+      gnome = {
+        enable = true;
+      };
+    };
   };
 
   # Configure console keymap
@@ -124,10 +133,30 @@
     dconf
     dconf2nix
     openssl
+    dig
   ];
+  environment.sessionVariables = {
+    XKB_DEFAULT_LAYOUT = "latam";
+    XKB_DEFAULT_OPTIONS = "terminate:ctrl_alt_bksp";
+    # Compatibilidad con aplicaciones GTK/Qt
+    GTK_USE_PORTAL = "1";
+    QT_QPA_PLATFORM = "wayland;xcb";
+  };
+  
 
   # Enable the Tailscale daemon.
   services.tailscale.enable = true;
+  
+  # Firewall configuration
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 ]; # SSH
+    extraCommands = ''
+      # Allow traffic from Docker networks to Docker host
+      iptables -A INPUT -s 172.18.0.0/16 -d 172.17.0.1 -j ACCEPT
+      iptables -A INPUT -s 172.17.0.0/16 -d 172.17.0.1 -j ACCEPT
+    '';
+  };
   
   # Enable the OpenSSH daemon.
   services.openssh = {
