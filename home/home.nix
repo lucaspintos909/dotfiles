@@ -6,6 +6,7 @@
     ./modules/bash.nix
     ./modules/neovim.nix
     ./modules/ssh.nix
+    ./modules/gnome.nix
   ];
 
   home = {
