@@ -29,6 +29,10 @@
       spotify
       discord
       kitty
+      bat
+      zip
+      unzip
+      curl
     ];
   };
   
