@@ -2,6 +2,15 @@
 # Este archivo contiene las configuraciones personalizadas para zsh
 
 # =============================================================================
+# POWERLEVEL10K CONFIGURATION
+# =============================================================================
+# Cargar configuración personalizada de Powerlevel10k (tiene prioridad)
+[[ -f ~/.config/zsh/p10k-custom.zsh ]] && source ~/.config/zsh/p10k-custom.zsh
+
+# Si no existe configuración personalizada, cargar la por defecto
+[[ ! -f ~/.config/zsh/p10k-custom.zsh && -f ~/.config/zsh/p10k-config.zsh ]] && source ~/.config/zsh/p10k-config.zsh
+
+# =============================================================================
 # CONFIGURACIÓN DE HISTORIAL
 # =============================================================================
 setopt HIST_IGNORE_DUPS       # No guardar comandos duplicados consecutivos
