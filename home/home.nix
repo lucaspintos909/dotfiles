@@ -35,6 +35,10 @@
       unzip
       curl
       zsh
+      zsh-powerlevel10k
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.fira-code
+      nerd-fonts.hack
     ];
   };
   
@@ -46,5 +50,8 @@
   };
 
   programs.home-manager.enable = true;
+
+  # Configuración de fuentes
+  fonts.fontconfig.enable = true;
   
 }
