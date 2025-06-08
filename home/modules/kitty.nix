@@ -4,7 +4,7 @@
     
     settings = {
       # Apariencia
-      font_family = "JetBrains Mono";
+      font_family = "JetBrainsMono Nerd Font";
       font_size = 12;
       bold_font = "auto";
       italic_font = "auto";
