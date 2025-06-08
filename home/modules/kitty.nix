@@ -61,6 +61,19 @@
       "ctrl+shift+enter" = "new_window";
       "ctrl+shift+n" = "new_os_window";
       
+      # Navegación entre ventanas
+      "ctrl+shift+]" = "next_window";
+      "ctrl+shift+[" = "previous_window";
+      "alt+1" = "first_window";
+      "alt+2" = "second_window";
+      "alt+3" = "third_window";
+      "alt+4" = "fourth_window";
+      "alt+5" = "fifth_window";
+      
+      # Mover ventanas
+      "ctrl+shift+f" = "move_window_forward";
+      "ctrl+shift+b" = "move_window_backward";
+      
       # Font size
       "ctrl+shift+equal" = "increase_font_size";
       "ctrl+shift+minus" = "decrease_font_size";
