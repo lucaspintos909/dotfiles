@@ -5,7 +5,7 @@
     let 
         flakePath = "~/nix";
     in {
-      rebuild = "sudo nixos-rebuild switch --flake ${flakePath}";
+      rebuild = "sudo nixos-rebuild switch --flake ${flakePath} && reload-keyboard";
       hms = "home-manager switch --flake ${flakePath}";
       vim = "nvim";
       vi = "nvim";

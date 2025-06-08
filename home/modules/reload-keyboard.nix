@@ -28,7 +28,6 @@
 
   # Alias para facilitar el uso
   programs.bash.shellAliases = {
-    hms-reload = "home-manager switch --flake ~/nix && reload-keyboard";
     kb-reload = "reload-keyboard";
   };
 } 
