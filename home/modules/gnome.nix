@@ -164,7 +164,7 @@
         "clipboard-indicator@tudmotu.com"
       ];
       favorite-apps = [
-        "org.gnome.Console.desktop"
+        "kitty.desktop"
         "brave-browser.desktop"
         "org.gnome.Nautilus.desktop"
         "brave-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop"
