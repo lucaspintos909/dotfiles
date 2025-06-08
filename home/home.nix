@@ -8,6 +8,7 @@
     ./modules/ssh.nix
     ./modules/gnome.nix
     ./modules/keyboard-fix.nix
+    ./modules/kitty.nix
   ];
 
   home = {
@@ -27,6 +28,7 @@
       prismlauncher
       spotify
       discord
+      kitty
     ];
   };
   
