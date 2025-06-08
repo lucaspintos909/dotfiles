@@ -39,8 +39,6 @@
       hms = "home-manager switch --flake ${flakePath}";
       
       # Aliases de herramientas
-      vim = "nvim";
-      vi = "nvim";
       ls = "ls -lah";
       l = "ls";
       sl = "ls";

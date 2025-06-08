@@ -3,13 +3,12 @@
 {
 
   imports = [
-    ./modules/bash.nix
-    ./modules/neovim.nix
     ./modules/ssh.nix
+    ./modules/zsh.nix
+    ./modules/neovim.nix
     ./modules/gnome.nix
     ./modules/keyboard-fix.nix
     ./modules/kitty.nix
-    ./modules/zsh.nix
   ];
 
   home = {
@@ -53,5 +52,4 @@
 
   # Configuración de fuentes
   fonts.fontconfig.enable = true;
-  
 }
