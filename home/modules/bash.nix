@@ -9,8 +9,15 @@
       hms = "home-manager switch --flake ${flakePath}";
       vim = "nvim";
       vi = "nvim";
-      la = "ls -la";
-      l = "ls -la";
+      ls = "ls -lah";
+      l = "ls";
+      sl = "ls";
+      la = "ls";
+      ll = "ls";
+      cat = "bat";
+      mkdir = "mkdir -p";
+      rmdir = "rmdir -p";
+      ".." = "cd ..";
     };
   };
 }
