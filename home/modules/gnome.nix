@@ -1,6 +1,19 @@
 { config, pkgs, ... }:
 
 {
+  # Paquetes necesarios para la gestión del teclado
+  home.packages = with pkgs; [
+    gnomeExtensions.system-monitor
+    gnomeExtensions.clipboard-indicator
+    xorg.setxkbmap  # Para comandos de teclado
+  ];
+
+  # Variables de entorno para el teclado
+  home.sessionVariables = {
+    XKB_DEFAULT_LAYOUT = "latam";
+    XKB_DEFAULT_OPTIONS = "terminate:ctrl_alt_bksp";
+  };
+
   dconf.settings = {
     # Configuración de carpetas de aplicaciones
     "org/gnome/desktop/app-folders" = {
@@ -55,10 +68,26 @@
       color-scheme = "prefer-dark";
     };
 
-    # Configuración de entrada
+    # Configuración de entrada - MODIFICADA para mayor persistencia
     "org/gnome/desktop/input-sources" = {
       sources = [ [ "xkb" "latam" ] ];
       xkb-options = ["terminate:ctrl_alt_bksp"];
+      # Forzar la aplicación inmediata de los cambios
+      current = 0;
+      mru-sources = [ [ "xkb" "latam" ] ];
+    };
+
+    # Configuración adicional de teclado
+    "org/gnome/desktop/peripherals/keyboard" = {
+      delay = 500;
+      repeat = true;
+      repeat-interval = 30;
+      numlock-state = true;
+    };
+
+    # Configuración del sistema de entrada
+    "org/gnome/settings-daemon/plugins/keyboard" = {
+      active = true;
     };
 
     # Notificaciones
@@ -167,14 +196,32 @@
     };
   };
 
-  # Paquetes necesarios para las extensiones
-  home.packages = with pkgs; [
-    gnomeExtensions.system-monitor
-    gnomeExtensions.clipboard-indicator
-  ];
-
   # Habilitar extensiones de GNOME
   gtk = {
     enable = true;
+  };
+
+  # Script de inicio para asegurar el layout de teclado
+  systemd.user.services.keyboard-layout-fix = {
+    Unit = {
+      Description = "Fix keyboard layout after login";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.writeShellScript "fix-keyboard-layout" ''
+        sleep 2
+        export XKB_DEFAULT_LAYOUT="latam"
+        export XKB_DEFAULT_OPTIONS="terminate:ctrl_alt_bksp"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/input-sources/sources "[('xkb', 'latam')]"
+        ${pkgs.dconf}/bin/dconf write /org/gnome/desktop/input-sources/xkb-options "['terminate:ctrl_alt_bksp']"
+        ${pkgs.xorg.setxkbmap}/bin/setxkbmap -layout latam -option terminate:ctrl_alt_bksp
+      ''}";
+      RemainAfterExit = true;
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
   };
 }
