@@ -2,12 +2,13 @@
 
 {
   # Script con substituciones de Nix
-  home.file.".local/bin/keyboard-reload".source = pkgs.substituteAll {
-    src = ../scripts/keyboard-reload.sh;
+  home.file.".local/bin/keyboard-reload".source = pkgs.replaceVars ../scripts/keyboard-reload.sh {
     setxkbmap = "${pkgs.xorg.setxkbmap}/bin/setxkbmap";
     dconf = "${pkgs.dconf}/bin/dconf";
-    isExecutable = true;
   };
+
+  # Hacer el script ejecutable
+  home.file.".local/bin/keyboard-reload".executable = true;
 
   # Hook de activación - se ejecuta automáticamente después de home-manager switch
   home.activation.reloadKeyboard = lib.hm.dag.entryAfter ["writeBoundary"] ''
